@@ -22,7 +22,9 @@ restService.post("/echo", function(req, res) {
       : "Seems like some problem. Speak again.";
   return res.json({
     fulfillmentText: speech,
-    fulfillmentMessages: speech,
+    fulfillmentMessages: [
+		text:[speech]
+	],
     source: "webhook-echo-sample"
   });
 });

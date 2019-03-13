@@ -13,6 +13,11 @@ restService.use(
   })
 );
 
+const WELCOME_INTENT = "Default Fallback Intent"
+const FALLBACK_INTENT= "Default Welcome Intent"
+const NEED_QUOTE_INTENT = "NeedQuote"
+
+const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
 
 restService.post("/echo", function(req, res) {
@@ -46,20 +51,40 @@ function fallback (agent) {
     agent.add(`I'm sorry, can you try again?`);
 }
 
+
+
+function quote (agent) {
+    
+	const quote_type = agent.parameters[QUOTE_TYPE_ENTITY].toLowerCase();
+	
+	if (quote_type == "inspiration") 
+    {
+    	agent.add("Quote inspiration ")
+    }else if (quote_type == "happiness") 
+    {
+    	agent.add("Quote happiness ")
+    }else if (quote_type == "friendship") 
+    {
+    	agent.add("Quote friendship ")
+    }else
+  		agent.add("Quote :) ")
+	
+}
+
 function WebhookProcessing(req, res) {
     const agent = new WebhookClient({request: req, response: res});
     console.info(`agent set`);
 
     let intentMap = new Map();
-    intentMap.set('Default Welcome Intent', welcome);
-    intentMap.set('Default Fallback Intent', fallback);
-// intentMap.set('<INTENT_NAME_HERE>', yourFunctionHandler);
+    intentMap.set(WELCOME_INTENT, welcome);
+    intentMap.set(FALLBACK_INTENT, fallback);
+	intentMap.set(NEED_QUOTE_INTENT, quote);
     agent.handleRequest(intentMap);
 }
 
 
 // Webhook
-restService.post('/test', function (req, res) {
+restService.post('/quote', function (req, res) {
     console.info(`\n\n>>>>>>> S E R V E R   H I T <<<<<<<`);
     WebhookProcessing(req, res);
 });

@@ -13,8 +13,8 @@ restService.use(
   })
 );
 
-const WELCOME_INTENT = "Default Fallback Intent"
-const FALLBACK_INTENT= "Default Welcome Intent"
+const WELCOME_INTENT = "Default Welcome Intent"
+const FALLBACK_INTENT= "Default Fallback Intent"
 const NEED_QUOTE_INTENT = "NeedQuote"
 const MAKE_SANDWICH_INTENT = "makeSandwich"
 

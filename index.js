@@ -104,7 +104,7 @@ function sandwich(agent)
 	const gotCondiments = condiments.length > 0;
 	
 	if(gotMeat && gotCondiments){
-		agent.add("${meat} and ${condiments} will be ready soon.");
+		agent.add(meat +" and " + condiments+" will be ready soon.");
 	} else if (!gotMeat && gotCondiments){
 		agent.add("What meat do you want?");
 	}else if (gotMeat && !gotCondiments){

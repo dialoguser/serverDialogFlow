@@ -73,7 +73,7 @@ function quote (agent) {
 }
 
 function WebhookProcessingQuote(req, res) {
-    const agent = new WebhookClient({request: req, response: res});
+    var agent = new WebhookClient({request: req, response: res});
     console.info(`agent set`);
 
     let intentMap = new Map();
@@ -94,11 +94,14 @@ restService.post('/quote', function (req, res) {
 
 function sandwich(agent)
 {
-	const meat = agent.parameters[meat];
-	const condiments = agent.parameters[condiments];
+	const meat = agent.parameters["meat"];
+	const condiments = agent.parameters["condiments"];
 	
-	const gotMeat = meat.length;
-	const gotCondiments = condiments.length;
+	console.info("waaaaaaaaaaaaaaaa");
+	console.info(meat);
+	
+	const gotMeat = meat.length > 0 ;
+	const gotCondiments = condiments.length > 0;
 	
 	if(gotMeat && gotCondiments){
 		agent.add("${meat} and ${condiments} will be ready soon.");
@@ -113,7 +116,7 @@ function sandwich(agent)
 }
 
 function WebhookProcessingSandwich(req, res) {
-    const agent = new WebhookClient({request: req, response: res});
+    var agent = new WebhookClient({request: req, response: res});
     console.info(`agent set`);
 
     let intentMap = new Map();

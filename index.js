@@ -16,6 +16,7 @@ restService.use(
 const WELCOME_INTENT = "Default Fallback Intent"
 const FALLBACK_INTENT= "Default Welcome Intent"
 const NEED_QUOTE_INTENT = "NeedQuote"
+const MAKE_SANDWICH_INTENT = "makeSandwich"
 
 const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
@@ -71,7 +72,7 @@ function quote (agent) {
 	
 }
 
-function WebhookProcessing(req, res) {
+function WebhookProcessingQuote(req, res) {
     const agent = new WebhookClient({request: req, response: res});
     console.info(`agent set`);
 
@@ -86,8 +87,48 @@ function WebhookProcessing(req, res) {
 // Webhook
 restService.post('/quote', function (req, res) {
     console.info(`\n\n>>>>>>> S E R V E R   H I T <<<<<<<`);
-    WebhookProcessing(req, res);
+    WebhookProcessingQuote(req, res);
 });
+
+//-------------------------------------------------------------------------------------------------------//
+
+function sandwich(agent)
+{
+	const meat = agent.parameters[meat];
+	const condiments = agent.parameters[condiments];
+	
+	const gotMeat = meat.length;
+	const gotCondiments = condiments.length;
+	
+	if(gotMeat && gotCondiments){
+		agent.add("${meat} and ${condiments} will be ready soon.");
+	} else if (!gotMeat && gotCondiments){
+		agent.add("What meat do you want?");
+	}else if (gotMeat && !gotCondiments){
+		agent.add("What condiments do you want?");
+	}else{
+		agent.add("please specify what meat and condiments do you want.");
+	}
+	
+}
+
+function WebhookProcessingSandwich(req, res) {
+    const agent = new WebhookClient({request: req, response: res});
+    console.info(`agent set`);
+
+    let intentMap = new Map();
+    intentMap.set(WELCOME_INTENT, welcome);
+    intentMap.set(FALLBACK_INTENT, fallback);
+	intentMap.set(MAKE_SANDWICH_INTENT, sandwich);
+    agent.handleRequest(intentMap);
+}
+
+// Webhook
+restService.post('/sandwich', function (req, res) {
+    console.info(`\n\n>>>>>>> S E R V E R   H I T <<<<<<<`);
+    WebhookProcessingSandwich(req, res);
+});
+
 
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");

@@ -47,10 +47,10 @@ function Hot (agent){
   const meat = agent.parameters["meat"];
 	const condiments = agent.parameters["condiments"];
   
-  var context = agent.getContext("sandwichTypeContext");
+  var context = agent.context.get("sandwichtypecontext");
 
-  console.info("waaaaaaaaaaaaaaaa");
-  console.info(context);
+  console.info("CONTEXT LIFE SPAN");
+  console.info(context.lifespan);
 
 	
 	const gotMeat = meat.length > 0 ;

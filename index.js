@@ -24,16 +24,46 @@ const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
 function sandwich(agent)
 {
-  const typeSandwich = agent.parameters["typeOfSandwich"];
+  const typeSandwich = agent.parameters["typeOfSandwich"].toLowerCase();
   const gotType = typeSandwich.length > 0;
 
   if (gotType){
-    agent.add("you want a " + typeSandwich + " sandwich");
+    agent.add("you want a " + typeSandwich + " sandwich.");
+    if (typeSandwich == "hot"){
+      agent.add("What meat and condiments do you want :)?");
+    }else if (typeSandwich == "cold"){
+      agent.add("What ingredient do you want :)?");
+    }
+
   }else{
     agent.add("Type please :)");
   }
 
 	
+}
+
+function Hot (agent){
+  const meat = agent.parameters["meat"];
+	const condiments = agent.parameters["condiments"];
+  
+  var context = agent.getContext("sandwichTypeContext");
+
+  console.info("waaaaaaaaaaaaaaaa");
+  console.info(context);
+
+	
+	const gotMeat = meat.length > 0 ;
+	const gotCondiments = condiments.length > 0;
+	
+	if(gotMeat && gotCondiments){
+		agent.add(meat +" and " + condiments+" will be ready soon. Do you want a drink ?");
+	} else if (!gotMeat && gotCondiments){
+		agent.add("What meat do you want?");
+	}else if (gotMeat && !gotCondiments){
+		agent.add("What condiments do you want?");
+	}else{
+		agent.add("please specify what meat and condiments do you want.");
+	}
 }
 
 //--------------------------------------------------------//

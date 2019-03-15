@@ -17,6 +17,7 @@ const WELCOME_INTENT = "Default Welcome Intent"
 const FALLBACK_INTENT= "Default Fallback Intent"
 const NEED_QUOTE_INTENT = "NeedQuote"
 const MAKE_SANDWICH_INTENT = "makeSandwich"
+const HOT_SANDWICH = "hotSandwich"
 
 const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
@@ -150,7 +151,8 @@ function WebhookProcessingSandwich(req, res) {
     let intentMap = new Map();
     intentMap.set(WELCOME_INTENT, welcome);
     intentMap.set(FALLBACK_INTENT, fallback);
-	  intentMap.set(MAKE_SANDWICH_INTENT, sandwich);
+    intentMap.set(MAKE_SANDWICH_INTENT, sandwich);
+    intentMap.set(HOT_SANDWICH, Hot);
     agent.handleRequest(intentMap);
 }
 

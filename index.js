@@ -2,7 +2,7 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const { WebhookClient } = require('dialogflow-fulfillment');
+const { WebhookClient, Text, Card, Image, Suggestion, Payload } = require('dialogflow-fulfillment');
 
 const restService = express();
 
@@ -50,6 +50,9 @@ function sandwich(agent)
       buttonUrl: wikipediaUrl
     })
   );
+    agent.add(new Suggestion(`hot`));
+    agent.add(new Suggestion(`cold`));
+    agent.add(new Suggestion(`Cancel`));
   }
 
 	

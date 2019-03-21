@@ -21,6 +21,10 @@ const HOT_SANDWICH = "hotSandwich"
 
 const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
+
+const wikipediaUrl = 'https://fr.wikipedia.org/wiki/Sandwich';
+const wikipediaImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/1/15/Sandwiches_pour_cocktail.JPG';
+
 //--------------------------------------------------------//
 
 function sandwich(agent)
@@ -38,6 +42,14 @@ function sandwich(agent)
 
   }else{
     agent.add("Type please :)");
+    agent.add(new Card({
+      title: `Vibrating molecules`,
+      imageUrl: wikipediaImageUrl,
+      text: `Did you know that temperature is really just a measure of how fast molecules are vibrating around?! 😱`,
+      buttonText: 'Temperature Wikipedia Page', 
+      buttonUrl: wikipediaUrl
+    })
+  );
   }
 
 	

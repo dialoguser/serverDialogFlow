@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js"
   },
-  "author": "Sunil Syal",
+  "author": "whaaaat",
   "dependencies": {
     "actions-on-google": "^2.6.0",
     "body-parser": "^1.18.3",

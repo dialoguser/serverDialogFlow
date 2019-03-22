@@ -22,7 +22,7 @@ const HOT_SANDWICH = "hotSandwich"
 const QUOTE_TYPE_ENTITY = "TypeOfQuote"
 
 
-const wikipediaUrl = 'https://fr.wikipedia.org/wiki/Sandwich';
+const wikipediaUrl = 'https://www.google.com/maps/search/?api=1&query=tours+france';
 const wikipediaImageUrl = 'https://upload.wikimedia.org/wikipedia/commons/1/15/Sandwiches_pour_cocktail.JPG';
 
 //--------------------------------------------------------//

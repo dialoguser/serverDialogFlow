@@ -32,6 +32,10 @@ function sandwich(agent)
   const typeSandwich = agent.parameters["typeOfSandwich"].toLowerCase();
   const gotType = typeSandwich.length > 0;
 
+  
+
+
+
   if (gotType){
     agent.add("you want a " + typeSandwich + " sandwich.");
     if (typeSandwich == "hot"){
@@ -108,7 +112,16 @@ restService.post("/echo", function(req, res) {
 });
 
 function welcome (agent) {
-    agent.add(`Welcome to Express.JS webhook!`);
+    
+
+    const lang = agent.locale.toLowerCase();
+    console.info(lang);
+
+    if (lang.includes("fr"))
+      agent.add(`Bonjour sur Express.JS webhook!`);
+    else if (lang.includes("en"))
+      agent.add(`Welcome to Express.JS webhook!`);
+
 }
 
 function fallback (agent) {

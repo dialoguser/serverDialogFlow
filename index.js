@@ -46,11 +46,12 @@ function sandwich(agent)
 
   }else{
     agent.add("Type please :)");
+
     agent.add(new Card({
-      title: `Vibrating molecules`,
+      title: `Sandwich Card`,
       imageUrl: wikipediaImageUrl,
-      text: `Did you know that temperature is really just a measure of how fast molecules are vibrating around?! 😱`,
-      buttonText: 'Temperature Wikipedia Page', 
+      text: `You can make your order over here`,
+      buttonText: 'Lien vers map ', 
       buttonUrl: wikipediaUrl
     })
   );
@@ -111,6 +112,8 @@ restService.post("/echo", function(req, res) {
   });
 });
 
+/****************************************************/
+
 function welcome (agent) {
     
 
@@ -123,7 +126,7 @@ function welcome (agent) {
       agent.add(`Welcome to Express.JS webhook!`);
 
 }
-
+/****************************************************/
 function fallback (agent) {
     // console.info(`unknown -- ${agent.originalRequest}`);
     agent.add(`I didn't understand`);
@@ -157,7 +160,7 @@ function WebhookProcessingQuote(req, res) {
     let intentMap = new Map();
     intentMap.set(WELCOME_INTENT, welcome);
     intentMap.set(FALLBACK_INTENT, fallback);
-	intentMap.set(NEED_QUOTE_INTENT, quote);
+	  intentMap.set(NEED_QUOTE_INTENT, quote);
     agent.handleRequest(intentMap);
 }
 
